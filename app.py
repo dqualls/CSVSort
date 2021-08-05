@@ -6,6 +6,9 @@ def parse_csv(filename):
     rows = []
 
     file = open(filename, "r")
+
+    # Read in the header and each line. Strip the newline.
+    # Put each line into an array (split on the comma)
     header_columns = file.readline().strip().split(',')
     for line in file.readlines():
         rows.append(line.strip().split(','))
@@ -18,6 +21,8 @@ def parse_csv(filename):
 def write_csv(filename, header, rows):
     file = open(f"output/{filename}", "w")
 
+    # Join the array of rows (strings) back into single
+    # string with commas between each item. Add a newline at the end of each line.
     file.writelines(",".join(header) + "\n")
     file.writelines(",".join(r) + "\n" for r in rows)
 
@@ -27,9 +32,9 @@ def bubble_sort(index, rows):
     length = len(rows)
     sorted_rows = rows.copy()
     
-    # Looping through each index of rows
+    # Looping through each index of rows. 
     for a in range(length):
-        # Comparing the "next" two arrays (rows before length-a-1 have been sorted)
+        # Comparing the current array and next array (arrays after length-a-1 have been sorted)
         for b in range(0, length-a-1):
             # Use the header index to compare the corresponding string in each row
             # If the string at b is less than its neighbor at b+1,
@@ -44,14 +49,13 @@ if __name__== "__main__":
 
     header, rows = parse_csv("input.csv")
 
-    # Case insensitive search for which index the sort column is
+    # Case insensitive search for which index the sort column is.
+    # If sort_column is not in the header list, catch exception and exit (with humor)
     try:
         sort_index = [h.lower() for h in header].index(sort_column.lower())
     except ValueError as ve:
         print(f"\nYou and I both know '{sort_column}' is not a column in the header!")
         exit(1)
-
-    print(f"Sort Index: {sort_index}")
 
     sorted_rows = bubble_sort(sort_index, rows)
     write_csv("output.csv", header, sorted_rows)
