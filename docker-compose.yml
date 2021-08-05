@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+    csv-sort:
+        build: .
+        image: csv-sort
+        volumes:
+            - ./output:/opt/app/output
