@@ -43,11 +43,14 @@ if __name__== "__main__":
     sort_column = sys.argv[1]
 
     header, rows = parse_csv("input.csv")
-    print(f"Header: {header}")
-    print(f"Lines: {rows}")
 
     # Case insensitive search for which index the sort column is
-    sort_index = [h.lower() for h in header].index(sort_column.lower())
+    try:
+        sort_index = [h.lower() for h in header].index(sort_column.lower())
+    except ValueError as ve:
+        print(f"\nYou and I both know '{sort_column}' is not a column in the header!")
+        exit(1)
+
     print(f"Sort Index: {sort_index}")
 
     sorted_rows = bubble_sort(sort_index, rows)
