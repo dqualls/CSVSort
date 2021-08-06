@@ -1,0 +1,48 @@
+** Testing: Explain in detail why these tests might be helpful in the future. **
+The Gherkin tests are very useful because they are human readable documentation for how
+ certain features should work given specific scenarios. Having the documentation in the code base
+ both makes it easy to find and allows someone new to the project to ramp up quickly.
+ Writing them out before your work is "done" (or before you start coding) can help you think about and catch 
+ specific edge cases that might not come to mind immediately. Also if the steps were implemented, they give you
+ a way to automatically test functionality to ensure your code works as you expect it to. This can be incredibly
+ benefical when making changes to existing projects because you can be confident that your changes didn't
+ break existing functionality (or learn they did before deployment). Having tests run in an automated fashion
+ both eliminate the need for manual regression testing and allow you to run the validations as part of a CI/CD pipeline. 
+ Without any automated testing it's incredibly difficult to release code quickly, with high quality, and confidently.
+
+
+1. In your opinion, what’s helpful about version control systems? What’s annoying
+about them?
+
+Pros:
+    - Helpful for collaboration between distributed teams
+    - History of changes which can be helpful to find catalysts for issues (performance or bugs)
+    - Easily revert changes that caused issues or you want to undo
+Cons:
+    - Merge conflicts can get messy when working on the same files in a codebase
+    - Dependent on third party service availability (Bitbucket loves to have incidents)
+
+2. What are some pros and cons of using Docker to develop, test, and deploy software?
+
+Pros:
+    - When developing locally, you can avoid installing depedencies on your machine (makes setting up an app much easier)
+    - Running the application in a docker continer ensures the app will run consistently across any environment
+    - Docker compose can help spin up/down local environments very quickly
+    - Easily create an environment to run integration tests that won't persist in a live datastore
+
+Cons:
+    - Nuances to the inner working of docker (especially networking) can be confusing and "magical"
+    - Conceptualizing "how docker works" can be difficult for junior engineers,
+        especially when compared to running the same application on your actual machine vs in a container
+
+3. How do you choose which language to use for a given task? How did you choose the
+language?
+
+For this particular task I chose python because you can get an application from nothing, to up and running really
+ quickly. It also has really easy and intuitive file I/O. When exploring technologies in general, you have to
+ consider the benefit of trying something new vs being consistent with your current stack. Using the same language
+ and patterns makes it easier for engineers to swap between apps. Otherwise, do some research on the benefits of
+ popular languages (they usually have the most active communities) and compare that to what your project aims to
+ do. For example, are you building a service that non-technical users will need a UI to configure and use? Django gives you
+ and admin console for free! Want to build an easily distributable standalone tool? Golang compiles to easy-to-distribute
+ binaries.
